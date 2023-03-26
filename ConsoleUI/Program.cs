@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.DTOs;
 using System;
 
 namespace ConsoleUI
@@ -10,13 +11,90 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //GetCarTest();
+            //CarAddTest();
+            //ColorAddTest();
+            //ColorDeleteTet();
+            //ColorUpdateTest();
+            //ColorGetAllTest();
+            //GetByIdTest();
+ 
+            //DtoTest();
+
+
+
+
+        }
+
+        private static void DtoTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            foreach (var car in carManager.GetCarDetails())
+            {
+                Console.WriteLine(car.CarName + "_____" + car.ColorName +
+                    "_____" + car.BrandName + "____" + car.DailyPrice);
+            }
+        }
+
+        private static void GetByIdTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            Console.WriteLine(colorManager.GetById(2).Name);
+        }
+
+        private static void ColorGetAllTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.Name);
+            }
+        }
+
+        private static void ColorUpdateTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            colorManager.Update(new Entities.Concrete.Color
+            {
+                Id = 3,
+                Name = "Yellow",
+            });
+        }
+
+        private static void ColorDeleteTet()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            colorManager.Delete(new Entities.Concrete.Color
+            {
+                Id = 4,
+                Name = "Yellow",
+            });
+        }
+
+        private static void ColorAddTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            colorManager.Add(new Entities.Concrete.Color
+            {
+                Id = 4,
+                Name = "Yellow",
+            });
+        }
+
+        private static void GetCarTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
 
             foreach (var car in carManager.GetCarsByBrandId(1))
             {
                 Console.WriteLine(car.Description);
             }
+        }
 
+        private static void CarAddTest()
+        {
             CarManager carManager1 = new CarManager(new EfCarDal());
             carManager1.Add(new Entities.Concrete.Car
             {
@@ -24,8 +102,8 @@ namespace ConsoleUI
                 BrandId = 1,
                 ColorId = 1,
                 DailyPrice = 0,
-                Description="Very Nice Car",
-                ModelYear = 2020              
+                Description = "Very Nice Car",
+                ModelYear = 2020
             }); ;
         }
     }
