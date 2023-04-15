@@ -49,18 +49,30 @@ namespace ConsoleUI
         private static void GetByIdTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            Console.WriteLine(colorManager.GetById(2).Name);
-        }
-
-        private static void ColorGetAllTest()
-        {
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-
-            foreach (var color in colorManager.GetAll())
+            var result = colorManager.GetAll();
+            if (result.Success == true)
             {
-                Console.WriteLine(color.Name);
+                foreach(var color in result.Data)
+                {
+                    Console.WriteLine(color.Name);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+           
         }
+
+        //private static void ColorGetAllTest()
+        //{
+        //    ColorManager colorManager = new ColorManager(new EfColorDal());
+
+        //    foreach (var color in colorManager.GetAll())
+        //    {
+        //        Console.WriteLine(color.Name);
+        //    }
+        //}
 
         private static void ColorUpdateTest()
         {
