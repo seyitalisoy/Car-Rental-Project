@@ -19,7 +19,7 @@ namespace ConsoleUI
             //ColorGetAllTest();
             //GetByIdTest();
  
-            //DtoTest();
+            DtoTest();
 
 
 
@@ -30,11 +30,20 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine(car.CarName + "_____" + car.ColorName +
-                    "_____" + car.BrandName + "____" + car.DailyPrice);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarName + "  ->  " + car.ColorName +
+                        "  ->  " + car.BrandName + "  ->  " + car.DailyPrice);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+  
         }
 
         private static void GetByIdTest()
@@ -83,15 +92,15 @@ namespace ConsoleUI
             });
         }
 
-        private static void GetCarTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
+        //private static void GetCarTest()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetCarsByBrandId(1))
-            {
-                Console.WriteLine(car.Description);
-            }
-        }
+        //    foreach (var car in carManager.GetCarsByBrandId(1))
+        //    {
+        //        Console.WriteLine(car.Description);
+        //    }
+        //}
 
         private static void CarAddTest()
         {
