@@ -20,5 +20,7 @@ namespace Business.Constants
         public static string ColorAdded = "Color Added Successfully";
         public static string ColorUpdated = "Color Removed Successfully";
         public static string ColorDeleted = "Color Updated Successfully";
+
+        public static string RentalCarNotAvailable = "Car not available";
     }
 }

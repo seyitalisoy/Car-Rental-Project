@@ -18,12 +18,44 @@ namespace ConsoleUI
             //ColorUpdateTest();
             //ColorGetAllTest();
             //GetByIdTest();
- 
-            DtoTest();
+            //DtoTest();
 
+            //rentalGetAll();
+            //customerGetAll();
+            addUser();
+        }
 
+        private static void addUser()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new Entities.Concrete.User
+            {
+                Id = 4,
+                FirstName = "Ali",
+                LastName = "Soy",
+                Email = "ASoy@gmail.com",
+                Password = "Deneme111"
+            });
+        }
 
+        private static void customerGetAll()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.GetAll();
+            foreach (var customer in result.Data)
+            {
+                Console.WriteLine(customer.Id + "  " + customer.UserId + "  " + customer.CompanyName);
+            }
+        }
 
+        private static void rentalGetAll()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetAll();
+            foreach (var rental in result.Data)
+            {
+                Console.WriteLine(rental.Id + "  " + rental.CarId + "  " + rental.RentDate + "  " + rental.ReturnDate);
+            }
         }
 
         private static void DtoTest()
