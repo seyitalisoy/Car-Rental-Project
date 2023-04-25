@@ -22,7 +22,8 @@ namespace ConsoleUI
 
             //rentalGetAll();
             //customerGetAll();
-            addUser();
+            //addUser();
+
         }
 
         private static void addUser()

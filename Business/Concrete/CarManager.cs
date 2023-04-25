@@ -55,7 +55,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
