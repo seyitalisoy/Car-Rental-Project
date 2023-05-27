@@ -1,0 +1,30 @@
+﻿using Entities.Concrete;
+using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Business.ValidationRules.FluentValidation
+{
+    public class CarValidator : AbstractValidator<Car>
+    {
+        public CarValidator()
+        {
+            RuleFor(c => c.BrandId).NotEmpty().NotNull();
+
+            RuleFor(c => c.ColorId).NotEmpty().NotNull();
+
+            RuleFor(c => c.ModelYear).NotEmpty().NotNull();
+            RuleFor(c => c.ModelYear).GreaterThan(1886);
+
+            RuleFor(c => c.DailyPrice).NotEmpty().NotNull();
+            RuleFor(c => c.DailyPrice).GreaterThan(0);
+
+            RuleFor(c => c.Description).NotEmpty().NotNull();
+            RuleFor(c => c.Description).MinimumLength(2);
+
+        }
+
+
+    }
+}
